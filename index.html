@@ -56,11 +56,8 @@
         .hero { 
             min-height: 100vh; 
             background: radial-gradient(circle at center, #FFFFFF 0%, var(--bg-cream) 100%); 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 120px 10% 80px; 
-            gap: 50px;
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 120px 10% 80px; gap: 50px;
         }
         
         .hero-content { flex: 1; z-index: 2; }
@@ -75,16 +72,11 @@
         }
         .btn-main:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 35px rgba(178, 155, 136, 0.5); background-color: var(--text-dark); }
 
-        /* FORMATO ARCO */
-        .hero-image-wrapper {
-            flex: 1; display: flex; justify-content: center; align-items: center; position: relative;
-        }
+        .hero-image-wrapper { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; }
         .hero-single-img {
             width: 100%; max-width: 420px; aspect-ratio: 3/4; object-fit: cover;
-            border-radius: 200px 200px 15px 15px; 
-            border: 4px solid var(--bg-white);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.08); 
-            animation: floatHero 6s ease-in-out infinite; 
+            border-radius: 200px 200px 15px 15px; border: 4px solid var(--bg-white);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08); animation: floatHero 6s ease-in-out infinite; 
         }
         @keyframes floatHero {
             0%, 100% { transform: translateY(0px); }
@@ -116,7 +108,7 @@
         }
         .btn-outline:hover { background: var(--accent-taupe); color: var(--text-light); }
 
-        /* --- ESPECIALIDADES --- */
+        /* --- ESPECIALIDADES COM NOVAS ANIMAÇÕES --- */
         .services { padding: 100px 10%; text-align: center; background-color: var(--bg-cream); }
         .section-title { font-size: 3.2rem; color: var(--text-dark); margin-bottom: 60px; }
         .grid-services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1300px; margin: 0 auto; }
@@ -126,9 +118,38 @@
             border: 1px solid rgba(178, 155, 136, 0.2); 
             box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: var(--transition-fluid); 
             display: flex; flex-direction: column; align-items: center; 
+            position: relative; overflow: hidden; z-index: 1;
         }
+
+        /* Efeito de preenchimento (Luz de fundo) no Hover */
+        .card::before {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 0%;
+            background: linear-gradient(to top, rgba(178, 155, 136, 0.1), transparent);
+            transition: height 0.6s cubic-bezier(0.25, 1, 0.5, 1); z-index: -1;
+        }
+
         .card:hover { transform: translateY(-15px); border-color: var(--accent-taupe); box-shadow: 0 20px 40px rgba(178, 155, 136, 0.15); }
-        .card i { font-size: 3.5rem; color: var(--accent-taupe); margin-bottom: 20px; }
+        .card:hover::before { height: 100%; }
+        
+        /* Flutuação contínua dos ícones */
+        .card i { 
+            font-size: 3.5rem; color: var(--accent-taupe); margin-bottom: 20px; 
+            transition: all 0.4s ease;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        /* Desincronizando para parecer natural */
+        .card:nth-child(2n) i { animation-delay: 1.5s; }
+        .card:nth-child(3n) i { animation-delay: 0.7s; }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Reação do ícone ao passar o mouse */
+        .card:hover i { animation: none; transform: scale(1.15) translateY(-5px); color: var(--text-dark); }
+
         .card h3 { font-size: 1.4rem; color: var(--text-dark); margin-bottom: 15px; font-weight: 600; }
         .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
         .btn-center-container { margin-top: 70px; }
@@ -140,10 +161,8 @@
         
         .swiper-testimonials { width: 100%; max-width: 900px; margin: 0 auto; padding-bottom: 60px; }
         .test-card { 
-            background: var(--bg-cream); 
-            border: 1px solid rgba(178, 155, 136, 0.2); 
-            padding: 50px 40px; border-radius: 20px; 
-            display: flex; flex-direction: column; align-items: center; 
+            background: var(--bg-cream); border: 1px solid rgba(178, 155, 136, 0.2); 
+            padding: 50px 40px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; 
             box-shadow: 0 15px 30px rgba(0,0,0,0.04);
         }
         .test-card i.fa-quote-left { color: var(--accent-taupe); font-size: 2.5rem; margin-bottom: 20px; opacity: 0.8; }
@@ -155,35 +174,15 @@
         .swiper-pagination-bullet { background: rgba(178, 155, 136, 0.4); }
         .swiper-pagination-bullet-active { background: var(--accent-taupe); }
 
-        /* --- NOVA SEÇÃO: INSTAGRAM (MOCKUP IPHONE) --- */
+        /* --- INSTAGRAM (MOCKUP IPHONE À PROVA DE FALHAS MOBILE) --- */
         .instagram-reel {
-            padding: 100px 10%;
-            background-color: var(--bg-cream);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 80px;
+            padding: 100px 10%; background-color: var(--bg-cream);
+            display: flex; align-items: center; justify-content: space-between; gap: 80px;
         }
 
-        .insta-text {
-            flex: 1;
-            text-align: left;
-        }
-
-        .insta-text .section-title {
-            margin-bottom: 20px;
-            font-size: 3.5rem;
-            color: var(--text-dark);
-            line-height: 1.1;
-        }
-
-        .insta-text .reel-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 40px;
-            max-width: 90%;
-        }
+        .insta-text { flex: 1; text-align: left; }
+        .insta-text .section-title { margin-bottom: 20px; font-size: 3.5rem; color: var(--text-dark); line-height: 1.1; }
+        .insta-text .reel-subtitle { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 40px; max-width: 90%; }
 
         .btn-instagram {
             display: inline-flex; align-items: center; gap: 12px; padding: 16px 35px;
@@ -191,41 +190,51 @@
             color: #FFFFFF; font-weight: 600; border-radius: 50px; font-size: 1.1rem; letter-spacing: 1px;
             transition: var(--transition-fluid); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.2);
         }
-        .btn-instagram:hover {
-            transform: translateY(-5px); box-shadow: 0 15px 30px rgba(220, 39, 67, 0.35); filter: brightness(1.1);
-        }
+        .btn-instagram:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(220, 39, 67, 0.35); filter: brightness(1.1); }
 
-        .insta-mockup {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        .insta-mockup { flex: 1; display: flex; justify-content: center; align-items: center; }
 
+        /* Estrutura do Celular Forçada com Padding */
         .iphone-container {
-            position: relative; width: 100%; max-width: 320px; aspect-ratio: 9 / 19;
-            background-color: #1a1a1a; border-radius: 40px; border: 12px solid #1a1a1a;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15); overflow: hidden;
-            display: flex; justify-content: center; align-items: center;
+            position: relative; 
+            width: 100%; 
+            max-width: 300px; 
+            background-color: #1a1a1a; 
+            border-radius: 40px; 
+            border: 10px solid #1a1a1a;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
+            display: block; /* Remove o flex para não amassar o vídeo no Safari */
             outline: 2px solid rgba(178, 155, 136, 0.5); outline-offset: -2px;
             transition: var(--transition-fluid);
         }
         .iphone-container:hover { transform: translateY(-10px); box-shadow: 0 35px 60px rgba(178, 155, 136, 0.25); }
 
-        .iphone-container::before {
-            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+        /* Hack infalível para manter a proporção de celular no mobile (18:9) */
+        .iphone-container::after {
+            content: "";
+            display: block;
+            padding-bottom: 200%; 
+        }
+
+        /* O Entalhe (Notch) */
+        .notch {
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
             width: 40%; height: 25px; background-color: #1a1a1a;
             border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10;
         }
 
-        .reel-iframe-wrapper { width: 100%; height: 100%; position: relative; overflow: hidden; border-radius: 28px; background-color: #000; }
+        .reel-iframe-wrapper { 
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0; /* Preenche o container absoluto */
+            border-radius: 30px; background-color: #000; overflow: hidden; 
+        }
         
         .reel-iframe-wrapper video { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; 
-            object-fit: cover; pointer-events: none; 
+            width: 100%; height: 100%; border: none; 
+            object-fit: cover; /* Garante que o vídeo não fique com fitas pretas */
+            pointer-events: none; 
         }
 
-        /* --- LOCALIZAÇÃO E GOOGLE --- */
+        /* --- LOCALIZAÇÃO --- */
         .location { padding: 100px 10%; background: var(--bg-greige); display: flex; align-items: center; gap: 50px; }
         .location-info { flex: 1; }
         .location-info h2 { font-size: 3rem; color: var(--text-dark); margin-bottom: 20px; }
@@ -236,8 +245,7 @@
         .btn-google { 
             display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; 
             background: var(--bg-white); color: var(--text-dark); border: 1px solid rgba(178, 155, 136, 0.4);
-            font-weight: 500; border-radius: 50px; font-size: 0.95rem; 
-            transition: var(--transition-fluid); 
+            font-weight: 500; border-radius: 50px; font-size: 0.95rem; transition: var(--transition-fluid); 
         }
         .btn-google:hover { transform: translateY(-5px); border-color: var(--accent-taupe); box-shadow: 0 10px 20px rgba(178, 155, 136, 0.15); }
         .btn-google i { color: var(--accent-sand); font-size: 1.2rem; } 
@@ -283,7 +291,7 @@
             .clinic { padding: 60px 5%; }
             .test-card { padding: 30px 20px; }
             .insta-text .section-title { font-size: 2.8rem; }
-            .iphone-container { max-width: 280px; }
+            .iphone-container { max-width: 260px; border-width: 8px;} /* Ajuste de tamanho pro celular */
         }
     </style>
 </head>
@@ -389,8 +397,9 @@
         
         <div class="insta-mockup" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
             <div class="iphone-container">
+                <div class="notch"></div>
                 <div class="reel-iframe-wrapper">
-                    <video src="video site Gabi.mp4" autoplay loop muted playsinline></video>
+                    <video src="videos/video site Gabi.mp4" autoplay loop muted playsinline webkit-playsinline></video>
                 </div>
             </div>
         </div>
