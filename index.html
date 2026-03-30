@@ -14,16 +14,16 @@
     <style>
         /* --- VARIÁVEIS DA NOVA PALETA (NUDES E BEGES) --- */
         :root {
-            --bg-cream: #F0EAE1; /* Cor 2 da imagem: Creme claro para fundos */
-            --bg-white: #FFFFFF; /* Branco puro para os cards */
-            --bg-greige: #E2DDD5; /* Cor 3 da imagem: Greige/Cinza para alternar seções */
+            --bg-cream: #F0EAE1; 
+            --bg-white: #FFFFFF; 
+            --bg-greige: #E2DDD5; 
             
-            --accent-taupe: #B29B88; /* Cor 1 da imagem: Bege escuro/Fendi para botões e ícones */
-            --accent-sand: #F2D5AE; /* Cor 4 da imagem: Areia/Pêssego para bordas e estrelas */
+            --accent-taupe: #B29B88; 
+            --accent-sand: #F2D5AE; 
             
-            --text-dark: #40362E; /* Marrom super escuro para o texto (melhor leitura) */
-            --text-muted: #6E6156; /* Marrom médio para os parágrafos */
-            --text-light: #FFFFFF; /* Branco para o texto dentro dos botões escuros */
+            --text-dark: #40362E; 
+            --text-muted: #6E6156; 
+            --text-light: #FFFFFF; 
             
             --transition-fluid: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
@@ -155,6 +155,76 @@
         .swiper-pagination-bullet { background: rgba(178, 155, 136, 0.4); }
         .swiper-pagination-bullet-active { background: var(--accent-taupe); }
 
+        /* --- NOVA SEÇÃO: INSTAGRAM (MOCKUP IPHONE) --- */
+        .instagram-reel {
+            padding: 100px 10%;
+            background-color: var(--bg-cream);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 80px;
+        }
+
+        .insta-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .insta-text .section-title {
+            margin-bottom: 20px;
+            font-size: 3.5rem;
+            color: var(--text-dark);
+            line-height: 1.1;
+        }
+
+        .insta-text .reel-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 90%;
+        }
+
+        .btn-instagram {
+            display: inline-flex; align-items: center; gap: 12px; padding: 16px 35px;
+            background: linear-gradient(135deg, #e6683c 0%, #dc2743 50%, #cc2366 100%);
+            color: #FFFFFF; font-weight: 600; border-radius: 50px; font-size: 1.1rem; letter-spacing: 1px;
+            transition: var(--transition-fluid); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.2);
+        }
+        .btn-instagram:hover {
+            transform: translateY(-5px); box-shadow: 0 15px 30px rgba(220, 39, 67, 0.35); filter: brightness(1.1);
+        }
+
+        .insta-mockup {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .iphone-container {
+            position: relative; width: 100%; max-width: 320px; aspect-ratio: 9 / 19;
+            background-color: #1a1a1a; border-radius: 40px; border: 12px solid #1a1a1a;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15); overflow: hidden;
+            display: flex; justify-content: center; align-items: center;
+            outline: 2px solid rgba(178, 155, 136, 0.5); outline-offset: -2px;
+            transition: var(--transition-fluid);
+        }
+        .iphone-container:hover { transform: translateY(-10px); box-shadow: 0 35px 60px rgba(178, 155, 136, 0.25); }
+
+        .iphone-container::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 40%; height: 25px; background-color: #1a1a1a;
+            border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10;
+        }
+
+        .reel-iframe-wrapper { width: 100%; height: 100%; position: relative; overflow: hidden; border-radius: 28px; background-color: #000; }
+        
+        .reel-iframe-wrapper video { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; 
+            object-fit: cover; pointer-events: none; 
+        }
+
         /* --- LOCALIZAÇÃO E GOOGLE --- */
         .location { padding: 100px 10%; background: var(--bg-greige); display: flex; align-items: center; gap: 50px; }
         .location-info { flex: 1; }
@@ -195,10 +265,12 @@
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 1024px) { 
             .grid-services { grid-template-columns: repeat(2, 1fr); } 
-            .hero, .clinic, .location { flex-direction: column; text-align: center; padding-top: 120px; }
+            .hero, .clinic, .location, .instagram-reel { flex-direction: column; text-align: center; padding-top: 120px; gap: 50px;}
             .hero-image-wrapper { margin-top: 40px; }
             .google-buttons { justify-content: center; }
             .location-map { width: 100%; margin-top: 30px; }
+            .insta-text { text-align: center; }
+            .insta-text .reel-subtitle { margin: 0 auto 40px auto; }
         }
         @media (max-width: 768px) {
             .navbar { padding: 20px 5%; background: rgba(240, 234, 225, 0.98); }
@@ -210,6 +282,8 @@
             .grid-services { grid-template-columns: 1fr; }
             .clinic { padding: 60px 5%; }
             .test-card { padding: 30px 20px; }
+            .insta-text .section-title { font-size: 2.8rem; }
+            .iphone-container { max-width: 280px; }
         }
     </style>
 </head>
@@ -223,6 +297,7 @@
             <li><a href="#clinica">A Clínica</a></li>
             <li><a href="#servicos">Especialidades</a></li>
             <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#instagram">Instagram</a></li>
             <li><a href="#localizacao">Localização</a></li>
         </ul>
         <div class="menu-btn" id="menu-btn"><i class="fas fa-bars"></i></div>
@@ -299,6 +374,25 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <section class="instagram-reel" id="instagram">
+        <div class="insta-text" data-aos="fade-right" data-aos-duration="1200">
+            <h2 class="section-title">Siga a Dra. no Instagram</h2>
+            <p class="reel-subtitle">Acompanhe dicas diárias, bastidores do consultório e transformações reais de sorrisos diretamente no nosso perfil.</p>
+            
+            <a href="https://www.instagram.com/gabi_veigantt/" target="_blank" class="btn-instagram">
+                <i class="fab fa-instagram"></i> Continuar no Instagram
+            </a>
+        </div>
+        
+        <div class="insta-mockup" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+            <div class="iphone-container">
+                <div class="reel-iframe-wrapper">
+                    <video src="video site Gabi.mp4" autoplay loop muted playsinline></video>
+                </div>
+            </div>
         </div>
     </section>
 
