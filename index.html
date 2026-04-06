@@ -83,6 +83,39 @@
             50% { transform: translateY(-15px); }
         }
 
+        /* --- TAG DE URGÊNCIA 24H (NOVO) --- */
+        .urgency-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: rgba(178, 155, 136, 0.15);
+            border: 1px solid rgba(178, 155, 136, 0.4);
+            color: var(--text-dark);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(5px);
+        }
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #d94343;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(217, 67, 67, 0.7);
+            animation: pulse-red 1.5s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(217, 67, 67, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(217, 67, 67, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(217, 67, 67, 0); }
+        }
+
         /* --- SOBRE A DRA --- */
         .about { display: flex; align-items: center; padding: 100px 10%; background-color: var(--bg-white); gap: 50px; }
         .about-img { flex: 1; text-align: center; }
@@ -313,9 +346,16 @@
 
     <header class="hero">
         <div class="hero-content" data-aos="fade-right" data-aos-duration="1500">
+            
+            <div class="urgency-badge">
+                <span class="pulse-dot"></span>
+                Plantão de Urgência 24 Horas
+            </div>
+
             <h1>Dra. Gabriela Veigantt</h1>
             <h2>Cirurgiã-Dentista | Estética e Saúde Bucal</h2>
-            <a href="https://api.whatsapp.com/send?phone=5566996919551" target="_blank" class="btn-main">
+            
+            <a href="https://api.whatsapp.com/send?phone=5566996919551&text=Ol%C3%A1!%20Preciso%20de%20um%20atendimento%20de%20urg%C3%AAncia." target="_blank" class="btn-main">
                 <i class="fab fa-whatsapp"></i> Agendar Avaliação
             </a>
         </div>
@@ -399,7 +439,9 @@
             <div class="iphone-container">
                 <div class="notch"></div>
                 <div class="reel-iframe-wrapper">
-                    <video src="video site Gabi.mp4" autoplay loop muted playsinline webkit-playsinline></video>
+                    <video autoplay loop muted playsinline webkit-playsinline poster="capa-do-video.jpg">
+                        <source src="video-site-gabi.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </div>
