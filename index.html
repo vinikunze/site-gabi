@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dra. Gabriela Veigantt | Cirurgiã-Dentista</title>
+    <title>Dra. Gabriela Veigantt | Cirurgiã-Dentista - Urgência 24h Sinop</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,35 +29,80 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-cream); color: var(--text-dark); overflow-x: hidden; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-cream); color: var(--text-dark); overflow-x: hidden; padding-top: 90px; /* Espaço para o menu fixo */ }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         a { text-decoration: none; }
 
         /* --- MENU NAVEGAÇÃO --- */
         .navbar {
-            position: fixed; top: 0; left: 0; width: 100%; padding: 25px 10%;
+            position: fixed; top: 0; left: 0; width: 100%; padding: 15px 10%;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; transition: var(--transition-fluid); background: transparent;
+            z-index: 1000; transition: var(--transition-fluid); background: rgba(240, 234, 225, 0.95);
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(178, 155, 136, 0.2);
+            height: 90px;
         }
-        .navbar.scrolled {
-            background: rgba(240, 234, 225, 0.95); padding: 15px 10%;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(178, 155, 136, 0.2);
-        }
-        .navbar .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--accent-taupe); font-weight: 700; }
+        .navbar.scrolled { padding: 10px 10%; height: 80px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        
+        /* LOGO RETANGULAR NO MENU */
+        .navbar .logo img { height: 50px; width: auto; display: block; transition: var(--transition-fluid); }
+        .navbar.scrolled .logo img { height: 40px; }
+
         .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links li a { color: var(--text-dark); font-size: 1rem; font-weight: 500; position: relative; transition: var(--transition-fluid); }
+        .nav-links li a { color: var(--text-dark); font-size: 0.95rem; font-weight: 500; position: relative; transition: var(--transition-fluid); text-transform: uppercase; letter-spacing: 1px;}
         .nav-links li a::after { content: ''; position: absolute; width: 0%; height: 2px; background: var(--accent-taupe); bottom: -5px; left: 0; transition: var(--transition-fluid); }
         .nav-links li a:hover { color: var(--accent-taupe); }
         .nav-links li a:hover::after { width: 100%; }
         .menu-btn { display: none; color: var(--text-dark); font-size: 1.8rem; cursor: pointer; }
 
+        /* --- NOVA SEÇÃO DE URGÊNCIA (PRIORIDADE MÁXIMA) --- */
+        .urgency-section {
+            background-color: var(--text-dark); /* Fundo escuro para contraste nobre */
+            color: var(--text-light);
+            padding: 100px 10% 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .urgency-section::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(242, 213, 174, 0.1) 0%, transparent 70%);
+            opacity: 0.5; animation: rotateBg 20s linear infinite;
+        }
+        @keyframes rotateBg { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .urgency-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+
+        /* LOGO REDONDA COMO SELO DE PLANTÃO */
+        .urgency-logo-wrapper { position: relative; width: 130px; height: 130px; margin-bottom: 20px; }
+        .urgency-logo-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 4px solid var(--accent-sand); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        
+        /* EFEITO DE PULSO AO REDOR DA LOGO REDONDA */
+        .urgency-logo-wrapper::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 50%; background-color: var(--accent-sand);
+            opacity: 0.5; z-index: -1; animation: pulseLogo 2s infinite;
+        }
+        @keyframes pulseLogo { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.5); opacity: 0; } }
+
+        .urgency-section h2 { font-size: 3.5rem; color: var(--accent-sand); line-height: 1.2; margin-bottom: 10px; }
+        .urgency-section p { font-size: 1.2rem; font-weight: 300; opacity: 0.9; line-height: 1.8; max-width: 600px; }
+        
+        .btn-urgency { 
+            display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px; 
+            background-color: var(--accent-sand); color: var(--text-dark); 
+            font-weight: 700; border-radius: 50px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;
+            transition: var(--transition-fluid); box-shadow: 0 10px 30px rgba(242, 213, 174, 0.3); 
+        }
+        .btn-urgency:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(242, 213, 174, 0.5); background-color: var(--bg-white); }
+        .btn-urgency i { font-size: 1.3rem; animation: heartbeat 1.5s infinite; }
+        @keyframes heartbeat { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
         /* --- HERO SECTION --- */
         .hero { 
-            min-height: 100vh; 
+            min-height: 90vh; 
             background: radial-gradient(circle at center, #FFFFFF 0%, var(--bg-cream) 100%); 
             display: flex; align-items: center; justify-content: space-between; 
-            padding: 120px 10% 80px; gap: 50px;
+            padding: 80px 10%; gap: 50px;
         }
         
         .hero-content { flex: 1; z-index: 2; }
@@ -78,43 +123,7 @@
             border-radius: 200px 200px 15px 15px; border: 4px solid var(--bg-white);
             box-shadow: 0 20px 50px rgba(0,0,0,0.08); animation: floatHero 6s ease-in-out infinite; 
         }
-        @keyframes floatHero {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* --- TAG DE URGÊNCIA 24H (NOVO) --- */
-        .urgency-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background-color: rgba(178, 155, 136, 0.15);
-            border: 1px solid rgba(178, 155, 136, 0.4);
-            color: var(--text-dark);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            backdrop-filter: blur(5px);
-        }
-
-        .pulse-dot {
-            width: 10px;
-            height: 10px;
-            background-color: #d94343;
-            border-radius: 50%;
-            box-shadow: 0 0 0 0 rgba(217, 67, 67, 0.7);
-            animation: pulse-red 1.5s infinite;
-        }
-
-        @keyframes pulse-red {
-            0% { box-shadow: 0 0 0 0 rgba(217, 67, 67, 0.7); }
-            70% { box-shadow: 0 0 0 12px rgba(217, 67, 67, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(217, 67, 67, 0); }
-        }
+        @keyframes floatHero { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
 
         /* --- SOBRE A DRA --- */
         .about { display: flex; align-items: center; padding: 100px 10%; background-color: var(--bg-white); gap: 50px; }
@@ -141,11 +150,10 @@
         }
         .btn-outline:hover { background: var(--accent-taupe); color: var(--text-light); }
 
-        /* --- ESPECIALIDADES COM NOVAS ANIMAÇÕES --- */
+        /* --- ESPECIALIDADES --- */
         .services { padding: 100px 10%; text-align: center; background-color: var(--bg-cream); }
         .section-title { font-size: 3.2rem; color: var(--text-dark); margin-bottom: 60px; }
         .grid-services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1300px; margin: 0 auto; }
-        
         .card { 
             background: var(--bg-white); padding: 40px 25px; border-radius: 15px; 
             border: 1px solid rgba(178, 155, 136, 0.2); 
@@ -153,36 +161,18 @@
             display: flex; flex-direction: column; align-items: center; 
             position: relative; overflow: hidden; z-index: 1;
         }
-
-        /* Efeito de preenchimento (Luz de fundo) no Hover */
         .card::before {
             content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 0%;
             background: linear-gradient(to top, rgba(178, 155, 136, 0.1), transparent);
             transition: height 0.6s cubic-bezier(0.25, 1, 0.5, 1); z-index: -1;
         }
-
         .card:hover { transform: translateY(-15px); border-color: var(--accent-taupe); box-shadow: 0 20px 40px rgba(178, 155, 136, 0.15); }
         .card:hover::before { height: 100%; }
-        
-        /* Flutuação contínua dos ícones */
-        .card i { 
-            font-size: 3.5rem; color: var(--accent-taupe); margin-bottom: 20px; 
-            transition: all 0.4s ease;
-            animation: floatIcon 3s ease-in-out infinite;
-        }
-
-        /* Desincronizando para parecer natural */
+        .card i { font-size: 3.5rem; color: var(--accent-taupe); margin-bottom: 20px; animation: floatIcon 3s ease-in-out infinite; transition: all 0.4s ease;}
         .card:nth-child(2n) i { animation-delay: 1.5s; }
         .card:nth-child(3n) i { animation-delay: 0.7s; }
-
-        @keyframes floatIcon {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-
-        /* Reação do ícone ao passar o mouse */
+        @keyframes floatIcon { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
         .card:hover i { animation: none; transform: scale(1.15) translateY(-5px); color: var(--text-dark); }
-
         .card h3 { font-size: 1.4rem; color: var(--text-dark); margin-bottom: 15px; font-weight: 600; }
         .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
         .btn-center-container { margin-top: 70px; }
@@ -191,7 +181,6 @@
         .testimonials { padding: 120px 10%; background: var(--bg-white); color: var(--text-dark); text-align: center; position: relative; overflow: hidden; }
         .testimonials::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; background: var(--accent-sand); opacity: 0.3; border-radius: 50%; filter: blur(80px); }
         .testimonials .section-title { color: var(--text-dark); margin-bottom: 40px; }
-        
         .swiper-testimonials { width: 100%; max-width: 900px; margin: 0 auto; padding-bottom: 60px; }
         .test-card { 
             background: var(--bg-cream); border: 1px solid rgba(178, 155, 136, 0.2); 
@@ -202,21 +191,15 @@
         .stars { color: var(--accent-sand); margin-bottom: 20px; font-size: 1.2rem; }
         .test-card p { font-size: 1.2rem; line-height: 1.8; font-style: italic; margin-bottom: 25px; font-weight: 300; color: var(--text-muted); }
         .test-name { font-weight: 600; color: var(--accent-taupe); font-family: 'Playfair Display', serif; font-size: 1.4rem; letter-spacing: 1px; }
-        
         .swiper-button-next, .swiper-button-prev { color: var(--accent-taupe); }
         .swiper-pagination-bullet { background: rgba(178, 155, 136, 0.4); }
         .swiper-pagination-bullet-active { background: var(--accent-taupe); }
 
-        /* --- INSTAGRAM (MOCKUP IPHONE À PROVA DE FALHAS MOBILE) --- */
-        .instagram-reel {
-            padding: 100px 10%; background-color: var(--bg-cream);
-            display: flex; align-items: center; justify-content: space-between; gap: 80px;
-        }
-
+        /* --- INSTAGRAM MOCKUP (VÍDEO CORRIGIDO) --- */
+        .instagram-reel { padding: 100px 10%; background-color: var(--bg-cream); display: flex; align-items: center; justify-content: space-between; gap: 80px; }
         .insta-text { flex: 1; text-align: left; }
         .insta-text .section-title { margin-bottom: 20px; font-size: 3.5rem; color: var(--text-dark); line-height: 1.1; }
         .insta-text .reel-subtitle { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 40px; max-width: 90%; }
-
         .btn-instagram {
             display: inline-flex; align-items: center; gap: 12px; padding: 16px 35px;
             background: linear-gradient(135deg, #e6683c 0%, #dc2743 50%, #cc2366 100%);
@@ -224,47 +207,20 @@
             transition: var(--transition-fluid); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.2);
         }
         .btn-instagram:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(220, 39, 67, 0.35); filter: brightness(1.1); }
-
         .insta-mockup { flex: 1; display: flex; justify-content: center; align-items: center; }
-
-        /* Estrutura do Celular Forçada com Padding */
         .iphone-container {
-            position: relative; 
-            width: 100%; 
-            max-width: 300px; 
-            background-color: #1a1a1a; 
-            border-radius: 40px; 
-            border: 10px solid #1a1a1a;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
-            display: block; /* Remove o flex para não amassar o vídeo no Safari */
-            outline: 2px solid rgba(178, 155, 136, 0.5); outline-offset: -2px;
-            transition: var(--transition-fluid);
+            position: relative; width: 100%; max-width: 300px; background-color: #1a1a1a; 
+            border-radius: 40px; border: 10px solid #1a1a1a; box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
+            display: block; outline: 2px solid rgba(178, 155, 136, 0.5); outline-offset: -2px; transition: var(--transition-fluid);
         }
         .iphone-container:hover { transform: translateY(-10px); box-shadow: 0 35px 60px rgba(178, 155, 136, 0.25); }
-
-        /* Hack infalível para manter a proporção de celular no mobile (18:9) */
-        .iphone-container::after {
-            content: "";
-            display: block;
-            padding-bottom: 200%; 
-        }
-
-        /* O Entalhe (Notch) */
-        .notch {
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 40%; height: 25px; background-color: #1a1a1a;
-            border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10;
-        }
-
-        .reel-iframe-wrapper { 
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0; /* Preenche o container absoluto */
-            border-radius: 30px; background-color: #000; overflow: hidden; 
-        }
+        .iphone-container::after { content: ""; display: block; padding-bottom: 200%; }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 40%; height: 25px; background-color: #1a1a1a; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10; }
+        .reel-iframe-wrapper { position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 30px; background-color: #000; overflow: hidden; }
         
+        /* VÍDEO PRONTO PARA MOBILE */
         .reel-iframe-wrapper video { 
-            width: 100%; height: 100%; border: none; 
-            object-fit: cover; /* Garante que o vídeo não fique com fitas pretas */
-            pointer-events: none; 
+            width: 100%; height: 100%; object-fit: cover; pointer-events: none; 
         }
 
         /* --- LOCALIZAÇÃO --- */
@@ -273,7 +229,6 @@
         .location-info h2 { font-size: 3rem; color: var(--text-dark); margin-bottom: 20px; }
         .location-info p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 15px; line-height: 1.6; }
         .location-info i { color: var(--accent-taupe); margin-right: 10px; font-size: 1.2rem; }
-        
         .google-buttons { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
         .btn-google { 
             display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; 
@@ -282,127 +237,127 @@
         }
         .btn-google:hover { transform: translateY(-5px); border-color: var(--accent-taupe); box-shadow: 0 10px 20px rgba(178, 155, 136, 0.15); }
         .btn-google i { color: var(--accent-sand); font-size: 1.2rem; } 
-
         .location-map { flex: 1; border-radius: 15px; overflow: hidden; border: 4px solid var(--bg-white); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
         .location-map iframe { width: 100%; height: 400px; border: none; display: block; filter: grayscale(20%); transition: var(--transition-fluid); }
         .location-map iframe:hover { filter: grayscale(0%); opacity: 1; }
 
-        /* --- RODAPÉ E WP FLUTUANTE --- */
-        footer { background: var(--accent-taupe); color: var(--text-light); text-align: center; padding: 40px 20px; }
+        /* --- RODAPÉ --- */
+        footer { background: var(--accent-taupe); color: var(--text-light); text-align: center; padding: 60px 20px; display: flex; flex-direction: column; align-items: center; gap: 30px;}
+        
+        /* LOGO QUADRADA NO RODAPÉ */
+        .footer-logo-img { max-width: 80px; height: auto; border-radius: 10px; }
+
         .social-links a { color: var(--bg-cream); font-size: 2.2rem; margin: 0 15px; transition: var(--transition-fluid); display: inline-block; }
         .social-links a:hover { color: var(--text-light); transform: translateY(-8px); }
+        footer p { opacity: 0.8; font-size: 0.9rem; letter-spacing: 1px; }
 
+        /* WP FLUTUANTE */
         .whatsapp-float { 
             position: fixed; width: 65px; height: 65px; bottom: 40px; right: 40px; 
             background-color: #25d366; color: #FFF; border-radius: 50px; 
             display: flex; align-items: center; justify-content: center; font-size: 35px; 
             box-shadow: 0px 5px 20px rgba(37, 211, 102, 0.3); z-index: 1000; 
-            transition: var(--transition-fluid); animation: pulse 2s infinite; 
+            transition: var(--transition-fluid); animation: pulseFloat 2s infinite; 
         }
         .whatsapp-float:hover { transform: scale(1.15) rotate(10deg); background-color: #1ebe57; }
-
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        @keyframes pulseFloat { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 1024px) { 
             .grid-services { grid-template-columns: repeat(2, 1fr); } 
-            .hero, .clinic, .location, .instagram-reel { flex-direction: column; text-align: center; padding-top: 120px; gap: 50px;}
+            .hero, .clinic, .location, .instagram-reel { flex-direction: column; text-align: center; padding: 60px 5%; gap: 40px;}
+            .navbar { padding: 15px 5%; }
+            .urgency-section h2 { font-size: 2.8rem; }
             .hero-image-wrapper { margin-top: 40px; }
             .google-buttons { justify-content: center; }
-            .location-map { width: 100%; margin-top: 30px; }
             .insta-text { text-align: center; }
             .insta-text .reel-subtitle { margin: 0 auto 40px auto; }
         }
         @media (max-width: 768px) {
-            .navbar { padding: 20px 5%; background: rgba(240, 234, 225, 0.98); }
+            body { padding-top: 80px; }
+            .navbar { height: 80px; }
+            .navbar .logo img { height: 35px; }
             .menu-btn { display: block; z-index: 1001; }
-            .nav-links { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background: var(--bg-white); flex-direction: column; justify-content: center; align-items: center; transition: var(--transition-fluid); border-left: 1px solid var(--accent-taupe); }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background: var(--bg-white); flex-direction: column; justify-content: center; align-items: center; transition: var(--transition-fluid); border-left: 1px solid var(--accent-taupe); box-shadow: -10px 0 30px rgba(0,0,0,0.05); }
             .nav-links.active { right: 0; }
+            .nav-links li a { font-size: 1.1rem; }
+            .urgency-section { padding: 60px 5%; }
+            .urgency-logo-wrapper { width: 100px; height: 100px; }
+            .hero { min-height: auto; padding: 60px 5%; }
             .hero-content h1 { font-size: 2.8rem; }
-            .about { flex-direction: column; text-align: center; padding: 60px 5%; }
+            .about-text h2, .clinic-text h2, .location-info h2, .section-title { font-size: 2.5rem; }
             .grid-services { grid-template-columns: 1fr; }
-            .clinic { padding: 60px 5%; }
             .test-card { padding: 30px 20px; }
-            .insta-text .section-title { font-size: 2.8rem; }
-            .iphone-container { max-width: 260px; border-width: 8px;} /* Ajuste de tamanho pro celular */
+            .iphone-container { max-width: 260px; border-width: 8px;}
         }
     </style>
 </head>
 <body id="inicio">
 
     <nav class="navbar" id="navbar">
-        <a href="#inicio" class="logo">Dra. Gabriela Veigantt</a>
+        <a href="#inicio" class="logo">
+            <img src="Gabi logo 2.jpeg" alt="Dra. Gabriela Veigantt - Logo">
+        </a>
         <ul class="nav-links" id="nav-links">
             <li><a href="#inicio">Início</a></li>
+            <li><a href="#urgencia">Urgência 24h</a></li>
             <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#clinica">A Clínica</a></li>
             <li><a href="#servicos">Especialidades</a></li>
             <li><a href="#depoimentos">Depoimentos</a></li>
-            <li><a href="#instagram">Instagram</a></li>
-            <li><a href="#localizacao">Localização</a></li>
+            <li><a href="#localizacao">Contato</a></li>
         </ul>
         <div class="menu-btn" id="menu-btn"><i class="fas fa-bars"></i></div>
     </nav>
 
+    <section class="urgency-section" id="urgencia">
+        <div class="urgency-content" data-aos="fade-up">
+            <div class="urgency-logo-wrapper">
+                <img src="Gabi logo 1.jpeg" alt="Plantão 24h Sinop" class="urgency-logo-img">
+            </div>
+            <h2>Plantão de Urgência 24 Horas</h2>
+            <p>Dor de dente súbita, traumas ou emergências bucais? Não espere. Oferecemos atendimento odontológico imediato, seguro e humanizado a qualquer hora do dia ou da noite em Sinop.</p>
+            <a href="https://api.whatsapp.com/send?phone=5566996919551&text=EMERG%C3%8ANCIA%2024H%3A%20Preciso%20de%20atendimento%20imediato." target="_blank" class="btn-urgency">
+                <i class="fab fa-whatsapp"></i> Chamar Urgência Agora
+            </a>
+        </div>
+    </section>
+
     <header class="hero">
         <div class="hero-content" data-aos="fade-right" data-aos-duration="1500">
-            
-            <div class="urgency-badge">
-                <span class="pulse-dot"></span>
-                Plantão de Urgência 24 Horas
-            </div>
-
-            <h1>Dra. Gabriela Veigantt</h1>
-            <h2>Cirurgiã-Dentista | Estética e Saúde Bucal</h2>
-            
-            <a href="https://api.whatsapp.com/send?phone=5566996919551&text=Ol%C3%A1!%20Preciso%20de%20um%20atendimento%20de%20urg%C3%AAncia." target="_blank" class="btn-main">
+            <h1>Sua saúde bucal em primeiro lugar</h1>
+            <h2>Cirurgiã-Dentista | Estética e Saúde Bucal Completa</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px; line-height: 1.8; max-width: 500px;">Do clareamento a procedimentos complexos, transformamos sorrisos com tecnologia e carinho.</p>
+            <a href="https://api.whatsapp.com/send?phone=5566996919551" target="_blank" class="btn-main">
                 <i class="fab fa-whatsapp"></i> Agendar Avaliação
             </a>
         </div>
-        
         <div class="hero-image-wrapper" data-aos="fade-left" data-aos-duration="1500">
             <img src="Gabi Perfil 3.jpeg" alt="Dra. Gabriela Veigantt" class="hero-single-img">
         </div>
     </header>
 
     <section class="about" id="sobre">
-        <div class="about-img" data-aos="fade-right" data-aos-duration="1200">
-            <img src="Gabi Perfil 2.jpeg" alt="Dra. Gabriela Veigantt" onerror="this.src='https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+        <div class="about-img" data-aos="fade-right">
+            <img src="Gabi Perfil 2.jpeg" alt="Dra. Gabriela Veigantt">
         </div>
-        <div class="about-text" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+        <div class="about-text" data-aos="fade-left" data-aos-delay="200">
             <h2>Sobre a Dra. Gabriela</h2>
             <span class="cro">CRO-MT 12.255</span>
             <p>Especialista em transformar sorrisos com atendimento humanizado, tecnologia de ponta e técnicas avançadas. Acreditamos que a odontologia vai além dos dentes: ela resgata a autoconfiança. Seu sorriso e sua autoestima são nossa maior prioridade.</p>
         </div>
     </section>
 
-    <section class="clinic" id="clinica">
-        <div class="clinic-img" data-aos="fade-left" data-aos-duration="1200">
-            <img src="Clinica Gabi.jpeg" alt="Estrutura da Clínica Odontológica">
-        </div>
-        <div class="clinic-text" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="200">
-            <h2>Um espaço feito para o seu conforto</h2>
-            <p>Nossa clínica foi planejada em cada detalhe para oferecer uma experiência acolhedora e tranquila do início ao fim. Contamos com equipamentos modernos e um ambiente climatizado para que o seu tratamento seja o mais confortável possível.</p>
-            <a href="https://api.whatsapp.com/send?phone=5566996919551&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+visita+para+conhecer+a+cl%C3%ADnica!" target="_blank" class="btn-outline">
-                <i class="far fa-calendar-check"></i> Agendar uma Visita
-            </a>
-        </div>
-    </section>
-
     <section class="services" id="servicos">
         <h2 class="section-title" data-aos="fade-up">Especialidades</h2>
         <div class="grid-services">
-            <div class="card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-tooth"></i><h3>Tratamento de Canal</h3><p>Tecnologia para procedimentos indolores e seguros.</p></div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-teeth"></i><h3>Implantes Dentários</h3><p>Solução moderna para recuperar a função mastigatória.</p></div>
-            <div class="card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-pump-soap"></i><h3>Profilaxia</h3><p>Limpeza profunda para dentes livres de tártaro.</p></div>
-            <div class="card" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-tools"></i><h3>Restauração</h3><p>Devolvemos a forma do dente com materiais estéticos.</p></div>
-            <div class="card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-smile-beam"></i><h3>Clareamento</h3><p>Sorriso radiante com resultados rápidos e seguros.</p></div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-gem"></i><h3>Lentes e Facetas</h3><p>A transformação estética definitiva para o seu sorriso.</p></div>
-            <div class="card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-syringe"></i><h3>Botox</h3><p>Suavização de marcas de expressão e terapias orofaciais.</p></div>
-            <div class="card" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-magic"></i><h3>Preenchimento Facial</h3><p>Harmonização focada na naturalidade do seu rosto.</p></div>
-        </div>
-        <div class="btn-center-container" data-aos="zoom-in" data-aos-delay="300">
-            <a href="https://api.whatsapp.com/send?phone=5566996919551" class="btn-main" target="_blank"><i class="fab fa-whatsapp"></i> Agendar meu Horário</a>
+            <div class="card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-tooth"></i><h3>Canal</h3><p>Tecnologia para procedimentos indolores.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-teeth"></i><h3>Implantes</h3><p>Recupere a função mastigatória.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-pump-soap"></i><h3>Limpeza</h3><p>Profilaxia profunda e saúde periodontal.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-tools"></i><h3>Restauração</h3><p>Estética e função devolvidas ao dente.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-smile-beam"></i><h3>Clareamento</h3><p>Resultados rápidos e seguros.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-gem"></i><h3>Lentes</h3><p>A transformação estética definitiva.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-syringe"></i><h3>Botox</h3><p>Estética e terapias orofaciais.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-magic"></i><h3>Harmonização</h3><p>Focada na naturalidade do rosto.</p></div>
         </div>
     </section>
 
@@ -410,14 +365,9 @@
         <h2 class="section-title" data-aos="fade-up">Sorrisos Transformados</h2>
         <div class="swiper swiper-testimonials" data-aos="fade-up" data-aos-delay="200">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><div class="test-card"><i class="fas fa-quote-left"></i><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"O atendimento foi impecável. Nunca me senti tão segura em uma cadeira de dentista!"</p><div class="test-name">- Nair</div></div></div>
-                <div class="swiper-slide"><div class="test-card"><i class="fas fa-quote-left"></i><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Fiz minhas lentes e o resultado ficou super natural. Recomendo de olhos fechados."</p><div class="test-name">- Marli</div></div></div>
-                <div class="swiper-slide"><div class="test-card"><i class="fas fa-quote-left"></i><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Profissional excelente, tirou todas as minhas dúvidas sobre o implante."</p><div class="test-name">- Matheus Eduardo</div></div></div>
-                <div class="swiper-slide"><div class="test-card"><i class="fas fa-quote-left"></i><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Amei o resultado do meu preenchimento facial, muito delicado e harmonioso."</p><div class="test-name">- Marinês</div></div></div>
-                <div class="swiper-slide"><div class="test-card"><i class="fas fa-quote-left"></i><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Estrutura fantástica e atendimento nota 1000. Resolvi meu canal sem dor."</p><div class="test-name">- Vinicius</div></div></div>
-                <div class="swiper-slide"><div class="test-card"><i class="fas fa-quote-left"></i><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Melhor limpeza que já fiz, saí do consultório com os dentes brilhando."</p><div class="test-name">- Gustavo</div></div></div>
-                <div class="swiper-slide"><div class="test-card"><i class="fas fa-quote-left"></i><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Atendimento no horário e muito atenciosa. Recomendo a Dra. Gabriela para todos."</p><div class="test-name">- Guilherme</div></div></div>
-                <div class="swiper-slide"><div class="test-card"><i class="fas fa-quote-left"></i><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Fiz o clareamento e meu sorriso mudou completamente minha autoestima."</p><div class="test-name">- Marcio</div></div></div>
+                <div class="swiper-slide"><div class="test-card"><i class="fas fa-quote-left"></i><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"O atendimento foi impecável. Nunca me senti tão segura!"</p><div class="test-name">- Nair</div></div></div>
+                <div class="swiper-slide"><div class="test-card"><i class="fas fa-quote-left"></i><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Fiz minhas lentes e o resultado ficou super natural."</p><div class="test-name">- Marli</div></div></div>
+                <div class="swiper-slide"><div class="test-card"><i class="fas fa-quote-left"></i><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Excelente profissional, tirou todas as dúvidas do implante."</p><div class="test-name">- Matheus E.</div></div></div>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -426,20 +376,18 @@
     </section>
 
     <section class="instagram-reel" id="instagram">
-        <div class="insta-text" data-aos="fade-right" data-aos-duration="1200">
-            <h2 class="section-title">Siga a Dra. no Instagram</h2>
-            <p class="reel-subtitle">Acompanhe dicas diárias, bastidores do consultório e transformações reais de sorrisos diretamente no nosso perfil.</p>
-            
+        <div class="insta-text" data-aos="fade-right">
+            <h2 class="section-title">Acompanhe no Instagram</h2>
+            <p class="reel-subtitle">Dicas diárias, bastidores e transformações reais diretamente no perfil da Dra. Gabriela.</p>
             <a href="https://www.instagram.com/gabi_veigantt/" target="_blank" class="btn-instagram">
-                <i class="fab fa-instagram"></i> Continuar no Instagram
+                <i class="fab fa-instagram"></i> Ver Perfil
             </a>
         </div>
-        
-        <div class="insta-mockup" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+        <div class="insta-mockup" data-aos="fade-left" data-aos-delay="200">
             <div class="iphone-container">
                 <div class="notch"></div>
                 <div class="reel-iframe-wrapper">
-                    <video autoplay loop muted playsinline webkit-playsinline poster="capa-do-video.jpg">
+                    <video autoplay loop muted playsinline webkit-playsinline poster="Gabi Perfil 3.jpeg">
                         <source src="video-site-gabi.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -448,34 +396,26 @@
     </section>
 
     <section class="location" id="localizacao">
-        <div class="location-info" data-aos="fade-right" data-aos-duration="1200">
-            <h2>Venha cuidar do seu sorriso</h2>
-            <p><i class="fas fa-map-marker-alt"></i> <strong>Endereço:</strong> Av. das Embaúbas, 1783 - St. Comercial, Sinop - MT</p>
-            <p><i class="far fa-clock"></i> <strong>Atendimento:</strong> Urgência 24 horas</p>
-            <p><i class="fas fa-star" style="color:#F2D5AE;"></i> <strong>Avaliação:</strong> 5.0 Estrelas no Google</p>
-            
+        <div class="location-info" data-aos="fade-right">
+            <h2>Contato e Localização</h2>
+            <p><i class="fas fa-map-marker-alt"></i> Av. das Embaúbas, 1783 - Sinop - MT</p>
+            <p><i class="far fa-clock"></i> Atendimento Geral e Urgência 24h</p>
             <div class="google-buttons">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Dra.+Gabriela+Veigantt+Sinop&destination_place_id=ChIJ785-zYZ_p5MR8cpcqLycz_g" target="_blank" class="btn-google">
-                    <i class="fas fa-directions"></i> Como Chegar
-                </a>
-                <a href="https://search.google.com/local/writereview?placeid=ChIJ785-zYZ_p5MR8cpcqLycz_g" target="_blank" class="btn-google">
-                    <i class="fas fa-star"></i> Ver Avaliações
-                </a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Dra.+Gabriela+Veigantt+Sinop&destination_place_id=ChIJ785-zYZ_p5MR8cpcqLycz_g" target="_blank" class="btn-google"><i class="fas fa-directions"></i> Como Chegar</a>
             </div>
         </div>
-        
-        <div class="location-map" data-aos="fade-left" data-aos-duration="1200">
+        <div class="location-map" data-aos="fade-left">
             <iframe src="https://maps.google.com/maps?q=Dra.%20Gabriela%20Veigantt%20Sinop&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
     <footer>
+        <img src="Gabi logo.jpeg" alt="Dra. Gabriela Veigantt" class="footer-logo-img">
         <div class="social-links">
             <a href="https://www.instagram.com/gabi_veigantt/" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://api.whatsapp.com/send?phone=5566996919551" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <br>
-        <p>© 2026 Dra. Gabriela Veigantt. CRO-MT 12.255</p>
+        <p>© 2026 Dra. Gabriela Veigantt. CRO-MT 12.255. Todos os direitos reservados.</p>
     </footer>
 
     <a href="https://api.whatsapp.com/send?phone=5566996919551" class="whatsapp-float" target="_blank">
@@ -484,40 +424,34 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    
     <script>
+        // Menu fixo no scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { navbar.classList.add('scrolled'); } 
-            else { navbar.classList.remove('scrolled'); }
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
         });
 
+        // Menu mobile
         const menuBtn = document.getElementById('menu-btn');
         const navLinks = document.getElementById('nav-links');
         const icon = menuBtn.querySelector('i');
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            if(navLinks.classList.contains('active')){
-                icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
-            }
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         });
         document.querySelectorAll('.nav-links li a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
             });
         });
 
-        AOS.init({ duration: 1000, easing: 'cubic-bezier(0.25, 1, 0.5, 1)', once: true, offset: 50 });
-
-        var swiper = new Swiper(".swiper-testimonials", {
-            slidesPerView: 1, spaceBetween: 30, loop: true, grabCursor: true, speed: 1000, 
-            autoplay: { delay: 5000, disableOnInteraction: false },
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-            pagination: { el: ".swiper-pagination", clickable: true },
-        });
+        // Inicializações
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+        new Swiper(".swiper-testimonials", { slidesPerView: 1, spaceBetween: 30, loop: true, autoplay: { delay: 5000 }, navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }, pagination: { el: ".swiper-pagination", clickable: true } });
     </script>
 </body>
 </html>
